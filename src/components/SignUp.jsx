@@ -86,7 +86,6 @@ class SignUp extends React.Component {
           body: JSON.stringify({governmentId: blob.signed_id})
         })
         .then(response => response.json())
-        // .then(data => this.props.updateCurrentUser(data))
       }
     })
   }
