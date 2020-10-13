@@ -36,6 +36,13 @@ render() {
             >
               Welcome
             </Link>
+            <Link 
+              to ="/map"
+              className ="nav-link active"
+              role ="button"
+            >
+              Map
+            </Link>
             <Link
               to ="/dashboard"
               className ="nav-link active"

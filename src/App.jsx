@@ -8,6 +8,8 @@ import Footer from './components/pages/Footer';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Dashboard from './components/pages/Dashboard';
+import Map from './components/map/Map';
+import Notice from './components/pages/Notice';
 
 class App extends React.Component {
 
@@ -90,24 +92,24 @@ class App extends React.Component {
 
 
   render() {
-    // const userEmail = this.state.userEmail;
-    // const PrivateRoute = ({ component: Component, ...rest}) => (
-    //   <Route {...rest} render={(props) => (
-    //     // console.log(this.state.user.email),
-    //     // console.log(localStorage.user),
-    //     // console.log(userEmail),
-    //     // console.log(localStorage.userEmail),
-    //     // console.log(localStorage.user[21]+localStorage.user[22]),
-    //     !!localStorage.userEmail && localStorage.userEmail != undefined
-    //     // this.state.isLoggedin === true
-    //     ? <Component {...props} {...rest}/>
-    //     : <Redirect to={{
-    //       pathname: '/notice',
-    //       state: { from: props.location }
-    //     }} />
-    //   )
-    // }/>
-    // )
+    const userEmail = this.state.userEmail;
+    const PrivateRoute = ({ component: Component, ...rest}) => (
+      <Route {...rest} render={(props) => (
+        // console.log(this.state.user.email),
+        // console.log(localStorage.user),
+        // console.log(userEmail),
+        // console.log(localStorage.userEmail),
+        // console.log(localStorage.user[21]+localStorage.user[22]),
+        !!localStorage.userEmail && localStorage.userEmail != undefined
+        // this.state.isLoggedin === true
+        ? <Component {...props} {...rest}/>
+        : <Redirect to={{
+          pathname: '/notice',
+          state: { from: props.location }
+        }} />
+      )
+    }/>
+    )
 
     return (
       <Fragment>
@@ -154,6 +156,18 @@ class App extends React.Component {
                   isLoggedin ={this.state.isLoggedin}
                 />  
               )}
+            />
+
+            <PrivateRoute
+              exact path ={"/map"}
+              component ={ Map }
+              user ={this.state.user}
+              isLoggedin ={this.state.isLoggedin}
+            />
+
+            <Route
+              exact path ={"/notice"}
+              component = { Notice }
             />
 
           </Switch>
