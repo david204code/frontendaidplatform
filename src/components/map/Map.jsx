@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import MapPin from './MapPin';
+import Requests from './Requests';
 
 const TOKEN = 'pk.eyJ1IjoiZGF2aWQyMDRjb2RlMSIsImEiOiJjazc2YjdobGUwOTI0M2VvamwwZXpvZGR1In0.FSpShMuhbroEHA9-0iG4sg';
 
@@ -14,6 +16,7 @@ class Map extends React.Component {
     super(props);
 
     this.state = {
+      helps: [],
 
       viewport: {
         longitude: -0.140,
@@ -23,10 +26,76 @@ class Map extends React.Component {
         pitch: 0
       },
       
+      popupInfo: null,
+
     };
 
-
   };
+
+  
+  onClickMap(e) {
+    // console.log(e.lngLat);
+  }
+
+  onDblClick(e) {
+    // console.log("Hi", e.lngLat[0], e.lngLat[1]);
+  }
+
+  componentWillMount() {
+    this._isMounted = true;
+    axios.get(`http://localhost:3001/publish.json`)
+    .then(data => {
+      let info = []
+      data.data.map( (data) => {
+        info.push(
+          {
+            id: data.id,
+            title: data.title,
+            description: data.description,
+            request_type: data.request_type,
+            location_long: data.location_long,
+            location_lat: data.location_lat,
+            color: data.color,
+            status: data.status
+          }
+        )
+        if (this._isMounted) {
+          this.setState({ helps: info })
+        }
+      })
+    })
+    .catch(data => {
+
+    })
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  };
+
+  _onClickMarker = helps => {
+    this.setState({popupInfo: helps});
+    // console.log(helps.location_lat);
+  };
+
+  _renderPopup() {
+    const {popupInfo} = this.state;
+
+    return (
+      popupInfo && (
+        <Popup
+          tipSize={5}
+          anchor="top"
+          longitude={parseFloat(popupInfo.location_long)}
+          latitude={parseFloat(popupInfo.location_lat)}
+          closeOnClick={false}
+          onClose={() => this.setState({popupInfo: null})}
+        >
+          <Requests info={popupInfo} />
+        </Popup>
+      )
+    );
+  }
 
   render() {
     
@@ -60,7 +129,17 @@ class Map extends React.Component {
                 onClick ={this.onClickMap}
                 onDblClick ={this.onDblClick}
                 doubleClickZoom ={false}
-              >        
+              >
+              {this.state.helps.map(help => (
+                <MapPin 
+                  {...this.state.helps}
+                  key={help.id}
+                  data={this.state.helps} 
+                  onClick={this._onClickMarker}
+                />
+              ))
+              }
+              {this._renderPopup()}          
             </ReactMapGL>
           </div>
 
