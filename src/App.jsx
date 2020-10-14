@@ -10,6 +10,7 @@ import Login from './components/Login';
 import Dashboard from './components/pages/Dashboard';
 import Map from './components/map/Map';
 import Notice from './components/pages/Notice';
+import MapPost from './components/map/MapPost';
 
 class App extends React.Component {
 
@@ -161,6 +162,13 @@ class App extends React.Component {
             <PrivateRoute
               exact path ={"/map"}
               component ={ Map }
+              user ={this.state.user}
+              isLoggedin ={this.state.isLoggedin}
+            />
+
+            <PrivateRoute
+              exact path ={"/post"}
+              component ={ MapPost }
               user ={this.state.user}
               isLoggedin ={this.state.isLoggedin}
             />

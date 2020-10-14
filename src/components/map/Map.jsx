@@ -63,6 +63,21 @@ class Map extends React.Component {
               >        
             </ReactMapGL>
           </div>
+
+          <div className ="pb-5 text-center">
+            <p className ="text-center pt-3">
+              Make your own post to help others or ask for help
+            </p>
+            <Link 
+              to ='/post'
+              className =''
+              role ='button'
+            >
+              <button>
+                Click here to volunteer
+              </button>
+            </Link>
+          </div> 
         </div>
       </div>
     );
