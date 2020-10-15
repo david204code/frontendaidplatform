@@ -39,29 +39,29 @@ class AcceptedHelp extends React.Component {
     this._isMounted = false;
   }
 
-  // completeRequest = (event) => {
-  //   event.preventDefault()
-  //   const { acceptedHelp } = this.state;
-  //   // console.log(acceptedHelp)
+  completeRequest = (event) => {
+    event.preventDefault()
+    const { acceptedHelp } = this.state;
+    // console.log(acceptedHelp)
 
-  //   axios.patch(`http://localhost:3000/completeHelp/${this.state.acceptedHelp.help.id}`,
-  //     // console.log(this.state.acceptedHelp.help)
-  //   )
-  //   axios.patch(`http://localhost:3000/updateActive/${this.state.acceptedHelp.id}`),
-  //   this.props.history.push(`/dashboard`);
-  // };
+    axios.patch(`http://localhost:3001/completeHelp/${this.state.acceptedHelp.help.id}`,
+      // console.log(this.state.acceptedHelp.help)
+      axios.patch(`http://localhost:3001/updateActive/${this.state.acceptedHelp.id}`),
+      this.props.history.push(`/dashboard`)
+    );
+  };
 
-  // archiveRequest = (event) => {
-  //   event.preventDefault()
-  //   const { acceptedHelp } = this.state;
-  //   // console.log(acceptedHelp)
+  archiveRequest = (event) => {
+    event.preventDefault()
+    const { acceptedHelp } = this.state;
+    // console.log(acceptedHelp)
 
-  //   axios.patch(`http://localhost:3000/archiveHelp/${this.state.acceptedHelp.help.id}`,
-  //     // console.log(this.state.acceptedHelp.help)
-  //   )
-  //   axios.patch(`http://localhost:3000/updateActive/${this.state.acceptedHelp.id}`),
-  //   this.props.history.push(`/dashboard`);
-  // };
+    axios.patch(`http://localhost:3001/archiveHelp/${this.state.acceptedHelp.help.id}`,
+      // console.log(this.state.acceptedHelp.help)
+      axios.patch(`http://localhost:3001/updateActive/${this.state.acceptedHelp.id}`),
+      this.props.history.push(`/dashboard`)
+    );
+  };
 
   render() {
     let loaded = this.state.loaded;
