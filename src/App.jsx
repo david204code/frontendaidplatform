@@ -12,6 +12,7 @@ import Map from './components/map/Map';
 import Notice from './components/pages/Notice';
 import MapPost from './components/map/MapPost';
 import Request from './components/map/Request';
+import AcceptedHelp from './components/2AccepterHelps/AcceptedHelp';
 
 class App extends React.Component {
 
@@ -175,7 +176,19 @@ class App extends React.Component {
             />
 
             <PrivateRoute
-              path="/request/:id" exact component ={Request}
+              path="/request/:id" 
+              component ={Request}
+              user ={this.state.user}
+              isLoggedin ={this.state.isLoggedin}
+            />
+
+            <Route exact path ={"/acceptedhelp/:id"} 
+              render ={props => (
+                <AcceptedHelp {...props}
+                user = {this.state.user}
+                cableApp = {this.props.cableApp}
+                />
+              )}
             />
 
             <Route

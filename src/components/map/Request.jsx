@@ -36,92 +36,98 @@ class Request extends React.Component {
       axios.get(`http://localhost:3001/checkUser/${id}/${this.state.userId}`)
       .then(response => {
         // console.log(response.data[0].user_id)
-        this.setState({checkUser: response.data[0].user_id})
+        // this.setState({checkUser: response.data[0].user_id})
       })
     })
     .catch(error => console.log(error))
   }
 
-  // checkingUser = (checkUser) => {
-  //   console.log(checkUser)
-  //   return checkUser && checkUser.map(user => {
-  //     return (
-  //       <div key ={user.id}>
-  //         <p key ={user.id}>id: {user.id}</p>
-  //       </div>
-  //     )
-  //   })    
-  // }
+  checkingUser = (checkUser) => {
+    console.log(checkUser)
+    return checkUser && checkUser.map(user => {
+      return (
+        <div key ={user.id}>
+          <p key ={user.id}>id: {user.id}</p>
+        </div>
+      )
+    })    
+  }
 
 
   acceptRequest = (event) => {
     event.preventDefault()
+    const csrfToken = document.querySelector('[name=csrf-token]')
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
     const { help } = this.state;
     const { accepted } = this.state;
 
     let acceptedId;
     // console.log(help.id);
     let acceptedHelp;
+    // console.log(help)
+    // console.log(this.props.user.id)
 
-    axios.post(`http://localhost:3001/accepted_helps`, {withCredentials: true, help_id: help.id})
-      .then(response => {
-        axios.get(`http://localhost:3001/latest/accepted_help`)
-          .then(response => {
+    axios.post("http://localhost:3001/accepted_helps",
+    {
+      accepted_help: {
+        help_id: this.state.help.id,
+      }
+    }, { withCredentials: true }
+    ).then(response => {
+      axios.get(`http://localhost:3001/latest/accepted_help`)
+        .then(response => {
+          // console.log(response)
+          this.setState({
+            accepted: response.data,
+            acceptedId: response.data.id,
+          })
+          // console.log("this.state.accepted.id: " + this.state.accepted.id);
+          acceptedId = this.state.accepted.id;
+          // console.log("acceptedId: " + acceptedId);
+          // this.props.history.push(`/acceptedhelp/${acceptedId}`);
+          axios.get(`http://localhost:3001/accepted_help/${acceptedId}`)
+          .then (response => {
             // console.log(response.data)
             this.setState({
-              accepted: response.data,
-              acceptedId: response.data.id,
+              acceptedHelp: response.data
             })
-            // console.log("this.state.accepted.id: " + this.state.accepted.id);
-            acceptedId = this.state.accepted.id;
-            // console.log("acceptedId: " + acceptedId);
-            // this.props.history.push(`/acceptedhelp/${acceptedId}`);
-            axios.get(`http://localhost:3001/accepted_help/${acceptedId}`)
-              .then (response => {
-              // console.log(response.data)
-              // console.log(response.data.help)
-              this.setState({
-                acceptedHelp: response.data
-              })
-              acceptedHelp = this.state.acceptedHelp;
-              // console.log(acceptedHelp)
-              // console.log(acceptedHelp.id)
-              // console.log(acceptedHelp.help.title)
-              axios.post(`http://localhost:3001/conversations`, 
-              {
-                conversation: {
+            acceptedHelp = this.state.acceptedHelp;
+            // console.log(acceptedHelp);
+            axios.post(`http://localhost:3001/conversations`, 
+            {
+              conversation: {
                 title: acceptedHelp.help.title,
                 accepted_help_id: acceptedHelp.id,
-                }
-              },
-              { withCredentials: true }
-              ).then(respone => {
-                if (respone.data.status === 'created') {
+              }
+            },
+            { withCredentials: true }
+            ).then(response => {
+              if (response.data.status === 'created') {
                 console.log(response)
-                }
-              }).catch(error => {
-                console.log("not created", error);
-              });
-              axios.get(`http://localhost:3001/acceptedHelpCounter/${this.state.help.id}`) 
-              .then(response => {
-                // console.log(response)
-                if (response.data >= 5) {
-                  // console.log(response.data)
-                  axios.patch(`http://localhost:3001/updateStatus/${this.state.help.id}`, 
-                  // console.log(this.state.help.id),
-                  )
-                }
-              })
-              this.props.history.push(`/acceptedhelp/${acceptedId}`);
-            })
+              }
+            }).catch(error => {
+              console.log("not created", error);
+            });
+            axios.get(`http://localhost:3001/acceptedHelpCounter/${this.state.help.id}`)
+            .then (response => {
+              // console.log(response)
+              if (response.data >= 5) {
+                // console.log(response.data)
+                axios.patch(`http://localhost:3001/updateStatus/${this.state.help.id}`, 
+                // console.log(this.state.help.id),
+                )
+              }
+            }) 
+            this.props.history.push(`/acceptedhelp/${acceptedId}`);
           })
-        .catch(error => console.log(error))    
         })
+        .catch(error => console.log(error))
+      })    
       .catch(error => console.log('api errors:', error.response)
       )
-      alert("Congrgulation on accepting this request");    
+      alert("Congrgulation on accepting this request");  
     };
-
+  
   render() {
     const { help } = this.state;
     const { accepted } = this.state;
