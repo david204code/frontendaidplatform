@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
-// import Conversation from '../Conversation';
+import Conversation from '../messaging/Conversation';
 
 class AcceptedHelp extends React.Component {
 
@@ -93,12 +93,12 @@ class AcceptedHelp extends React.Component {
               <p>Description: {this.state.acceptedHelp.help.description}</p>
             </div>
             {/* // need to pass in the props of the acceptedHelp ID */}
-            {/* <Conversation 
+            <Conversation 
               acceptedHelp={this.state.acceptedHelp}
               getConversation ={this.getConversation} 
               user={this.props.user} 
-              cableApp = {this.props.cableApp}
-            /> */}
+              // cableApp = {this.props.cableApp}
+            />
           </Fragment>
         }
       </div>
