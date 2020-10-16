@@ -9,11 +9,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
 import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import actionCable from 'actioncable';
 
+const CableApp = {}
+CableApp.cable = actionCable.createConsumer('ws://localhost:3001/cable')
 
 ReactDOM.render(
   <Router>
-    <App />
+    <App cableApp ={CableApp} />
   </Router>,
   document.getElementById('root')
 );
