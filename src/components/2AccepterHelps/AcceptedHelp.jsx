@@ -97,7 +97,7 @@ class AcceptedHelp extends React.Component {
               acceptedHelp={this.state.acceptedHelp}
               getConversation ={this.getConversation} 
               user={this.props.user} 
-              // cableApp = {this.props.cableApp}
+              cableApp = {this.props.cableApp}
             />
           </Fragment>
         }

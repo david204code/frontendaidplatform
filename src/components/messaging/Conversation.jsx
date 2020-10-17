@@ -53,7 +53,7 @@ class Conversation extends React.Component {
   
   submitMessage = (event) => {
     event.preventDefault()
-    const csrfToken = document.querySelector('[name=csrf-token]').content
+    const csrfToken = document.querySelector('[name=csrf-token]')
     axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
 
     this.setState({
