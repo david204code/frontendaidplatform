@@ -14,7 +14,8 @@ class SignUp extends React.Component {
       password_confirmation: "",
       registrationErrors: "",
       governmentId: {},
-    }
+      userId: "",
+    };
     
   }
 
@@ -67,7 +68,15 @@ class SignUp extends React.Component {
       },
       body: JSON.stringify({ user: user})
     })
-    .then(response => response.json())
+    .then(response => { 
+      axios.get(`http://localhost:3001/latest/user`)
+        .then(response => {
+          // console.log(response)
+          this.setState({
+            userId: response.data
+          })
+        })      
+    })
     .then(data => this.uploadFile(this.state.governmentId, data))
   }
 
@@ -77,7 +86,8 @@ class SignUp extends React.Component {
       if (error) {
         console.log(error)
       } else {
-        fetch(`http://localhost:3001/users/1`, {
+        // console.log(this.state.userId)
+        fetch(`http://localhost:3001/users/${this.state.userId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -87,6 +97,7 @@ class SignUp extends React.Component {
         })
         .then(response => response.json())
       }
+      this.props.history.push("/login");
     })
   }
 
