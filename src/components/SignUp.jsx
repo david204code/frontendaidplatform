@@ -14,12 +14,18 @@ class SignUp extends React.Component {
       password_confirmation: "",
       registrationErrors: "",
       governmentId: {},
-      userId: "",
     };
-    
+
+    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleOnChange = (event) => {
+  componentWillMount() {
+    return this.props.loggedInStatus ? this.redirect() : null
+  };
+
+  handleChange = (event) => {
     if (event.target.name === 'governmentId') {
       this.setState({
         [event.target.name]: event.target.files[0]
@@ -33,7 +39,7 @@ class SignUp extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log('submitting this form...')
+    // console.log('submitting this form...')
 
     const {
       email, 
@@ -68,17 +74,21 @@ class SignUp extends React.Component {
       },
       body: JSON.stringify({ user: user})
     })
-    .then(response => { 
-      axios.get(`http://localhost:3001/latest/user`)
+    .then(data => this.uploadFile(this.state.governmentId, data),
+      axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
         .then(response => {
+          // console.log(response);
+        if (response.data.logged_in) {
           // console.log(response)
-          this.setState({
-            userId: response.data
+          this.handleSuccessfulAuth(response)
+        } else {
+          this.setState ({
+            errors: response.data.errors
           })
-        })      
-    })
-    .then(data => this.uploadFile(this.state.governmentId, data))
-  }
+        }
+      })
+    )
+  }  
 
   uploadFile = (file, user) => {
     const upload = new DirectUpload(file, 'http://localhost:3001/rails/active_storage/direct_uploads')
@@ -86,8 +96,7 @@ class SignUp extends React.Component {
       if (error) {
         console.log(error)
       } else {
-        // console.log(this.state.userId)
-        fetch(`http://localhost:3001/users/${this.state.userId}`, {
+        fetch(`http://localhost:3001/users/${localStorage.userId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -97,40 +106,44 @@ class SignUp extends React.Component {
         })
         .then(response => response.json())
       }
-      this.props.history.push("/login");
     })
   }
 
+  handleSuccessfulAuth(data) {
+    this.props.handleLogin(data);
+    this.props.history.push("/dashboard");
+  };
+
   render() {
     return (
-      <Fragment>
+      <div>
         <form onSubmit ={this.handleSubmit}>
           <label>email:</label>
           <input 
             type ='email' 
             name ='email' 
             value ={this.state.email} 
-            onChange ={this.handleOnChange} 
+            onChange ={this.handleChange} 
           />
           <label>Password:</label>
           <input 
             type ='password' 
             name ='password' 
             value ={this.state.password} 
-            onChange ={this.handleOnChange} 
+            onChange ={this.handleChange} 
           />
           <label>Password_confirmation:</label>
           <input 
             type ='password' 
             name ='password_confirmation' 
             value ={this.state.password_confirmation} 
-            onChange ={this.handleOnChange} 
+            onChange ={this.handleChange} 
           />
           <label>Upload your governmentId:</label>
-          <input type ='file' name ='governmentId' onChange ={this.handleOnChange} />
+          <input type ='file' name ='governmentId' onChange ={this.handleChange} />
           <input type ='submit' value ='Create My Account' onSubmit ={this.handleSubmit}/>
-      </form>
-      </Fragment>
+        </form>
+      </div>
     )
   }
 }

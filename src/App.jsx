@@ -71,7 +71,7 @@ class App extends React.Component {
   }
 
   handleLogin = (data) => {
-    // console.log(data.data.user)
+    // console.log(data)
     this.setState({
       isLoggedin: true,
       user: data.data.user,
@@ -85,6 +85,7 @@ class App extends React.Component {
       isLoggedin: false,
       user: {},
       userEmail: '',
+      userId: '',
     });
   };
 
@@ -137,6 +138,7 @@ class App extends React.Component {
                 <SignUp {...props}
                   handleLogin ={this.handleLogin}
                   isLoggedin ={this.state.isLoggedin}
+                  handleSuccessfulAuth = {this.handleSuccessfulAuth}
                 />
               )}
             /> 
