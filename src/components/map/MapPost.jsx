@@ -88,8 +88,9 @@ class Help extends React.Component {
     }).catch(error => {
       console.log("registration", error);
     });
-    // alert("Congrgulation on volunteering")
-    this.props.history.push("/map");
+    alert("Congrgulation on volunteering")
+    // this.props.history.push("/map");
+    this.props.history.push("/dashboard");
     // window.location.reload(); 
   }
 

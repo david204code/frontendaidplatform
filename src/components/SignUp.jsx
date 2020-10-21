@@ -96,8 +96,8 @@ class SignUp extends React.Component {
       if (error) {
         console.log(error)
       } else {
-        fetch(`http://localhost:3001/users/${localStorage.userId}`, {
-          method: 'PUT',
+        fetch(`http://localhost:3001/user/${localStorage.userId}`, {
+          method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'

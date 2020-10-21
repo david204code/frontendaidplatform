@@ -32,18 +32,24 @@ class Request extends React.Component {
       // console.log(response)
       this.setState({help: response.data, loaded: true})
       // console.log(this.state.help.id)
-
       axios.get(`http://localhost:3001/checkUser/${id}/${this.state.userId}`)
       .then(response => {
+        console.log(response.data)
+        if(response.data.length === 0){
+          // console.log("hi")
+          this.setState({checkUser: ''})
+        } else {
+          this.setState({checkUser: response.data[0].user_id})
+        }
         // console.log(response.data[0].user_id)
         // this.setState({checkUser: response.data[0].user_id})
-      })
+      });
     })
     .catch(error => console.log(error))
   }
 
   checkingUser = (checkUser) => {
-    console.log(checkUser)
+    // console.log(checkUser)
     return checkUser && checkUser.map(user => {
       return (
         <div key ={user.id}>
