@@ -13,6 +13,9 @@ import Notice from './components/pages/Notice';
 import MapPost from './components/map/MapPost';
 import Request from './components/map/Request';
 import AcceptedHelp from './components/2AccepterHelps/AcceptedHelp';
+import PostedHelps from './components/1posterHelps/PostedHelps';
+import PostedHelp from './components/1posterHelps/PostedHelp';
+import AcceptedHelps from './components/2AccepterHelps/AcceptedHelps';
 
 class App extends React.Component {
 
@@ -154,15 +157,21 @@ class App extends React.Component {
               )}
             />
 
-            {/* <Route exact path ="/dashboard" component ={Dashboard} /> */}
-            <Route exact path ={"/dashboard"}
+            {/* <Route exact path ={"/dashboard"}
               render ={props => (
                 <Dashboard {...props}
                   isLoggedin ={this.state.isLoggedin}
                 />  
               )}
-            />
+            /> */}
 
+            <PrivateRoute
+              exact path ={"/dashboard"}
+              component ={ Dashboard }
+              user ={this.state.user}
+              isLoggedin ={this.state.isLoggedin}
+            />
+            
             <PrivateRoute
               exact path ={"/map"}
               component ={ Map }
@@ -191,6 +200,27 @@ class App extends React.Component {
                 cableApp = {this.props.cableApp}
                 />
               )}
+            />
+
+            <PrivateRoute
+              path ="/postedhelps"
+              component ={PostedHelps}
+              user ={this.state.user}
+              isLoggedin ={this.state.isLoggedin}
+            />
+
+            <PrivateRoute
+              path ="/postedhelp/:id"
+              component ={PostedHelp}
+              user ={this.state.user}
+              isLoggedin ={this.state.isLoggedin}
+            />
+
+            <PrivateRoute
+              path ="/acceptedhelps"
+              component ={ AcceptedHelps }
+              user ={this.state.user}
+              isLoggedin ={this.state.isLoggedin}
             />
 
             <Route
