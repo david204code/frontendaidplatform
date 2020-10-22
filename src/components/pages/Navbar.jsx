@@ -36,6 +36,15 @@ render() {
             >
               Welcome
             </Link>
+
+            <Link
+              to ="/getInvolved"
+              className ="nav-link active"
+              role ="button"
+            >
+              Get Involved
+            </Link>
+            
             <Link 
               to ="/map"
               className ="nav-link active"
@@ -49,20 +58,6 @@ render() {
               role ="button"
             >
               Dashboard
-            </Link>
-            <Link
-              to ="/signup"
-              className ="nav-link active"
-              role ="button"
-            >
-              Sign Up
-            </Link>
-            <Link
-              to ="/login"
-              className ="nav-link active"
-              role ="button"
-            >
-              Login
             </Link>
 
             {

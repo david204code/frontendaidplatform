@@ -16,6 +16,7 @@ import AcceptedHelp from './components/2AccepterHelps/AcceptedHelp';
 import PostedHelps from './components/1posterHelps/PostedHelps';
 import PostedHelp from './components/1posterHelps/PostedHelp';
 import AcceptedHelps from './components/2AccepterHelps/AcceptedHelps';
+import GetInvolved from './components/pages/GetInvolved';
 
 class App extends React.Component {
 
@@ -133,7 +134,15 @@ class App extends React.Component {
           <Switch>
             {/* <img src ={`http://localhost:3001/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4b3bae672748354e49cbf826f832c37bec9d1813/picture%20for%20retail%20max.jpg`} /> */}
             {/* <h1>Hi David</h1> */}
-            <Route exact path ="/welcome" component ={Welcome} />
+            <Route exact path ="/welcome" component ={ Welcome } />
+
+            <Route exact path ={"/getInvolved"} 
+              render ={props => (
+                <GetInvolved {...props}
+                  isLoggedin ={this.state.isLoggedin}
+                />
+              )}
+            />
 
             {/* <Route exact path ="/signup" component ={SignUp} /> */}
             <Route exact path ={"/signup"}

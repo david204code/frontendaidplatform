@@ -17,10 +17,18 @@ class Welcome extends React.Component {
 
     return (
       <div className ="coverPage text-center cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <h1 className="coverHeading">Cover your page.</h1>
-        <p className="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+        <h1 className="coverHeading">Aid Platform</h1>
         <p className="lead">
-        <a href="#" className="btn btn-lg btn-secondary">Learn more</a>
+          We are connecting people and buidling a community in a time of need and also in the time of goodness. Whether you want to provide generous help or recieve help in time of difficulties....
+        </p>
+        <p className="lead">
+          <Link
+            to ="/getInvolved"
+            className ="btn btn-lg btn-secondary"
+            role ="button"
+          >
+            Get Involved now!
+          </Link>
         </p>
       </div>
     );
