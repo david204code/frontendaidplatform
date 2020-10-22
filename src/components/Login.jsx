@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
+import './Login.css';
 
 class Login extends React.Component {
 
@@ -77,9 +78,9 @@ class Login extends React.Component {
           <h1>Welcome back!</h1>
           <h4>Great to see you, log in here</h4>
         </div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className ="form-signin my-4 ">
           <div className ="form-group">
-            <label>Email address</label>
+            <label className ="h5">Email address</label>
             <input
               type="email"
               name="email"
@@ -91,7 +92,7 @@ class Login extends React.Component {
             />
           </div>
           <div className ="form-group">
-            <label>Password</label>
+            <label className ="h5">Password</label>
             <input 
               type="password"
               name="password"
@@ -103,7 +104,7 @@ class Login extends React.Component {
             />
           </div>
           <div className ="text-center mt-2">
-            <button type="submit" className ="btn btn-success mt-1">
+            <button type="submit" className ="btn btn-info mt-1">
               Login
             </button>
           </div>
