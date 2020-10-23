@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import axios from 'axios';
+import Counter from '../Counter';
 
 class Navbar extends React.Component {
 
@@ -30,7 +31,7 @@ render() {
         <h3 className="">Aid Platform</h3>
           <nav className="nav nav-masthead justify-content-center">
             <Link
-              to ="/welcome"
+              to ="/"
               className ="nav-link active"
               role ="button"
             >
@@ -59,13 +60,13 @@ render() {
             >
               Dashboard
             </Link>
-
             {
               this.props.isLoggedin ? 
-                <button onClick={() => this.handleLogOutClick()}>Logout</button> :
+              <button onClick={() => this.handleLogOutClick()}>Logout</button> :
               null
             }
-        </nav>
+          </nav>
+          <Counter />
       </div>
     </header>
   )

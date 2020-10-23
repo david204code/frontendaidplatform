@@ -34,7 +34,7 @@ class Request extends React.Component {
       // console.log(this.state.help.id)
       axios.get(`http://localhost:3001/checkUser/${id}/${this.state.userId}`)
       .then(response => {
-        console.log(response.data)
+        // console.log(response.data)
         if(response.data.length === 0){
           // console.log("hi")
           this.setState({checkUser: ''})

@@ -31,7 +31,8 @@ class Conversation extends React.Component {
   componentDidMount () {
     // componentDidUpdate () {
     // console.log(this.props.acceptedHelp.conversation.id)
-    axios.get(`http://localhost:3001/conversation/${this.props.acceptedHelp.conversation.id}`)
+    // axios.get(`http://localhost:3001/conversation/${this.props.acceptedHelp.conversation.id}`)
+    axios.get(`http://localhost:3001/conversation/${this.props.acceptedHelp.conversation.accepted_help_id}`)
     .then( response => {
       // console.log(response.data)
       this.setState({currentConversation: {
@@ -62,15 +63,16 @@ class Conversation extends React.Component {
 
     const message = {
       content: this.state.newMessage,
-      conversation_id: this.state.currentConversation.conversation_id,
+      conversation_id: this.props.acceptedHelp.conversation.id,
       user_id: this.props.user.id
     }
-
+    // console.log(message)
+    // console.log(this.state.currentConversation.conversation_id)
     axios.post(`http://localhost:3001/messages`, 
-    {
-      content: this.state.newMessage,
-      conversation_id: this.state.currentConversation.conversation_id,
-      user_id: this.props.user.id
+    { message
+      // content: this.state.newMessage,
+      // conversation_id: this.state.currentConversation.conversation_id,
+      // user_id: this.props.user.id
     },
     { withCredentials: true }
     ).then(response => {

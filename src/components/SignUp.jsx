@@ -76,6 +76,7 @@ class SignUp extends React.Component {
       body: JSON.stringify({ user: user})
     })
     .then(data => this.uploadFile(this.state.governmentId, data),
+    // alert("Congrgulation on signing up!"),  
       axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
         .then(response => {
           // console.log(response);
@@ -97,7 +98,7 @@ class SignUp extends React.Component {
       if (error) {
         console.log(error)
       } else {
-        fetch(`http://localhost:3001/user/${localStorage.userId}`, {
+        fetch(`http://localhost:3001/users/${localStorage.userId}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
