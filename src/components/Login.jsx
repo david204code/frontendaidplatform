@@ -74,11 +74,11 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <div className ="text-center">
-          <h1>Welcome back!</h1>
+        <div className ="pt-4 text-center">
+          <h2>Welcome back!</h2>
           <h4>Great to see you, log in here</h4>
         </div>
-        <form onSubmit={this.handleSubmit} className ="form-signin my-4 ">
+        <form onSubmit={this.handleSubmit} className ="form-signin mb-4 ">
           <div className ="form-group">
             <label className ="h5">Email address</label>
             <input

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import { DirectUpload } from 'activestorage';
+import './SignUp.css'
 
 class SignUp extends React.Component {
 
@@ -116,33 +117,99 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit ={this.handleSubmit}>
-          <label>email:</label>
-          <input 
-            type ='email' 
-            name ='email' 
-            value ={this.state.email} 
-            onChange ={this.handleChange} 
-          />
-          <label>Password:</label>
-          <input 
-            type ='password' 
-            name ='password' 
-            value ={this.state.password} 
-            onChange ={this.handleChange} 
-          />
-          <label>Password_confirmation:</label>
-          <input 
-            type ='password' 
-            name ='password_confirmation' 
-            value ={this.state.password_confirmation} 
-            onChange ={this.handleChange} 
-          />
-          <label>Upload your governmentId:</label>
-          <input type ='file' name ='governmentId' onChange ={this.handleChange} />
-          <input type ='submit' value ='Create My Account' onSubmit ={this.handleSubmit}/>
-        </form>
+      <div className ="container pb-5">
+        
+        <div className ="py-4 text-center">
+          <h2>Sign Up!</h2>
+          <p className="lead my-3">
+            Sign up by filling in the form below. We are exciting to have you join and so is your community as well. 
+          </p>
+        </div>
+
+        <div className ="text-center">
+          <h4>Please fill in the form:</h4>
+          <form onSubmit ={this.handleSubmit}>
+
+            {/* <div className ="form-row col-md-6 text-center" style ={{display: "inline-flex"}}>
+              <div className ="form-group text-center mx-auto">
+                <label className ="lead">First Name:</label>
+                <input
+                  placeholder="First Name"
+                  className="form-control"
+                >
+                </input>
+              </div>
+              <div className ="form-group text-center mx-auto">
+                <label className ="lead">Last Name:</label>
+                <input
+                  placeholder="Last Name"
+                  className="form-control"
+                >
+                </input>
+              </div>
+            </div> */}
+
+            <div className ="form-row">
+              <div className ="form-group col-md-4 text-center mx-auto">
+                <label className ="lead">Email:</label>
+                <input 
+                  type ='email' 
+                  name ='email' 
+                  className="form-control"
+                  value ={this.state.email} 
+                  onChange ={this.handleChange}
+                  required 
+                />
+              </div>
+            </div>
+
+            <div className ="form-row col-md-6" style ={{display: "inline-flex"}}>
+              <div className ="form-group text-center mx-auto">
+                <label className ="lead">Password:</label>
+                <input 
+                  type ='password' 
+                  name ='password' 
+                  className="form-control"
+                  value ={this.state.password} 
+                  onChange ={this.handleChange} 
+                  required
+                />
+              </div>
+              <div className ="form-group text-center mx-auto">
+                <label className ="lead">Password_confirmation:</label>
+                <input 
+                  type ='password' 
+                  name ='password_confirmation'
+                  className="form-control" 
+                  value ={this.state.password_confirmation} 
+                  onChange ={this.handleChange} 
+                  required
+                />              
+              </div>
+            </div>
+
+            <div className ="row">
+              <div className ="form-group col-md-6 text-center mx-auto">
+                <label className ="lead">Upload your governmentId:</label> <br/>
+                  <p className ="text-center pl-5 ml-5 pb-2" style ={{}}>
+                    <input 
+                      type ='file' 
+                      name ='governmentId'
+                      className =""  
+                      onChange ={this.handleChange} 
+                      required
+                    />
+                  </p>
+              </div>
+            </div>
+            
+            <input 
+              className ="btn-success lead" 
+              type ='submit' 
+              value ='Create My Account' 
+              onSubmit ={this.handleSubmit}/>
+          </form>
+        </div>
       </div>
     )
   }
