@@ -102,20 +102,22 @@ class Map extends React.Component {
     return(
       <div>
         <div className ="jumbotron jumbotron-fluid text-center">
-          <h1>Map, get involved now!</h1>
+          <h1 className ="display-4">Map, get involved now!</h1>
           <div className ="offset-2">
-            <h4 className ="text-left">Hello {this.props.user.email} </h4>
+            <h4 className ="text-left lead mt-3">Hello {this.props.user.email} </h4>
           </div>
         </div>
 
         <div className ="container">
-          <div className ="">
+          <div className ="lead">
             <p className ="text-center">
               Browse the map below and take a good look around! Respond if it is something that
               interest you.
             </p>
             <p className ="text-center">
-              The markers are request or post made by someone in your community
+              The markers are request or post made by someone in your community<br/>
+              Red for <span style ={{color: 'red'}}>Material-Need</span> and Blue
+              for <span style ={{color: 'blue'}}>One-Time Task</span>
             </p>
           </div>          
           <div className ="offset-md-1">
@@ -144,7 +146,7 @@ class Map extends React.Component {
           </div>
 
           <div className ="pb-5 text-center">
-            <p className ="text-center pt-3">
+            <p className ="text-center pt-3 lead">
               Make your own post to help others or ask for help
             </p>
             <Link 
@@ -152,7 +154,7 @@ class Map extends React.Component {
               className =''
               role ='button'
             >
-              <button>
+              <button className ="btn btn-outline-primary">
                 Click here to volunteer
               </button>
             </Link>

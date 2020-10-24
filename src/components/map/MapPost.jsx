@@ -105,27 +105,27 @@ class Help extends React.Component {
     return (
       <div>
         <div className ="jumbotron jumbotron-fluid text-center">
-          <h1>Thank you for Volunteering!</h1>
-          <p>We are excited you want to volunteer. Fill in the form below</p>
+          <h1 className ="display-4">Thank you for Volunteering!</h1>
+          <p className ="lead">We are excited you want to volunteer. Fill in the form below</p>
           <div className ="offset-2">
-            <h4 className ="text-left">Hello {this.props.user.email} </h4>
+            <h4 className ="text-left lead">Hello {this.props.user.email} </h4>
           </div>
         </div>
 
         <div className ="container">
-          <div>
+          <div className ="text-center pb-4">
             <Link
               to ="/map"
               className =""
               role ="button"
             >
-              <button className ="">
+              <button className ="btn btn-outline-info">
                 Back to the map
               </button> 
             </Link>
           </div>
           <div className ="offset-md-1">
-            <p className ="text-center">
+            <p className ="text-center lead">
               Drag and drop the marker to your position to let others know where you
               are located in your community.
             </p>
@@ -158,7 +158,7 @@ class Help extends React.Component {
           <div className ="row py-4">
             <div className ="col-md-8 offset-md-2 text-center">
               <form onSubmit={this.handleSubmit}>
-                <div className ="row text-center pb-4">
+                <div className ="row text-center pb-4 lead">
                   <div className ="col-md-4 offset-md-2">
                     <label>Marker's Longitude</label>
                       <input
@@ -186,7 +186,7 @@ class Help extends React.Component {
                   </div>
                 </div>
 
-                <div className ="form-group col-md-4 offset-md-4">
+                <div className ="form-group col-md-4 offset-md-4 lead">
                   <h1 className =""> 
                     Volunteer 
                   </h1>
@@ -203,7 +203,7 @@ class Help extends React.Component {
                   />
                 </div>          
 
-                <div className ="form-group">
+                <div className ="form-group lead">
                   <label htmlFor ="volDescription">Description</label>
                     <textarea
                       type ="text"
@@ -218,7 +218,7 @@ class Help extends React.Component {
                     />
                 </div>
 
-                <div className ="col-md-4 offset-md-4 pb-2">
+                <div className ="col-md-4 offset-md-4 pb-2 lead">
                   <label htmlFor ="volType">Type of Request:
                   </label>
                   <select 
@@ -234,7 +234,7 @@ class Help extends React.Component {
                     <option value ="material-need">Material-Need</option>
                   </select>
                 </div>
-                <button type ="submit">Volunteer</button>
+                <button type ="submit" className ="btn btn-outline-success btn-lg my-4">Volunteer</button>
               </form>
             </div>
           </div>
