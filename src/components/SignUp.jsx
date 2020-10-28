@@ -90,6 +90,7 @@ class SignUp extends React.Component {
         }
       })
     )
+    alert("Congrgulation on signing up!");
   }  
 
   uploadFile = (file, user) => {

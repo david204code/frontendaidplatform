@@ -124,7 +124,8 @@ class Request extends React.Component {
                 )
               }
             }) 
-            this.props.history.push(`/acceptedhelp/${acceptedId}`);
+            // this.props.history.push(`/acceptedhelp/${acceptedId}`);
+            this.props.history.push(`/dashboard`);
           })
         })
         .catch(error => console.log(error))
