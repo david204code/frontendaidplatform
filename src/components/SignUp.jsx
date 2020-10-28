@@ -75,8 +75,9 @@ class SignUp extends React.Component {
       },
       body: JSON.stringify({ user: user})
     })
-    .then(data => this.uploadFile(this.state.governmentId, data),
-    // alert("Congrgulation on signing up!"),  
+    .then(data => this.uploadFile(this.state.governmentId, data, 
+      alert("Congrgulation on signing up!"),
+      // this.props.history.push("/login"),
       axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
         .then(response => {
           // console.log(response);
@@ -89,26 +90,29 @@ class SignUp extends React.Component {
           })
         }
       })
-    )
-    alert("Congrgulation on signing up!");
+    ))  
   }  
 
   uploadFile = (file, user) => {
-    const upload = new DirectUpload(file, 'http://localhost:3001/rails/active_storage/direct_uploads')
-    upload.create((error, blob) => {
-      if (error) {
-        console.log(error)
-      } else {
-        fetch(`http://localhost:3001/users/${localStorage.userId}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({governmentId: blob.signed_id})
-        })
-        .then(response => response.json())
-      }
+    axios.get(`http://localhost:3001/latest/user`, {withCredentials: true})
+    .then(response => {
+      // console.log(response)
+      const upload = new DirectUpload(file, 'http://localhost:3001/rails/active_storage/direct_uploads')
+      upload.create((error, blob) => {
+        if (error) {
+          console.log(error)
+        } else {
+          fetch(`http://localhost:3001/users/${response.data.id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({governmentId: blob.signed_id})
+          })
+          .then(response => response.json())
+        }
+      })
     })
   }
 
