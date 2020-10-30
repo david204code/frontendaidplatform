@@ -78,7 +78,9 @@ class SignUp extends React.Component {
     .then(data => this.uploadFile(this.state.governmentId, data, 
       alert("Congrgulation on signing up!"),
       // this.props.history.push("/login"),
-      axios.post('https://aidplatformapiheroku.herokuapp.com/login', {user}, {withCredentials: true})
+      axios.post('https://aidplatformapiheroku.herokuapp.com/login', {user}, 
+      // {withCredentials: true}
+      )
         .then(response => {
           // console.log(response);
         if (response.data.logged_in) {

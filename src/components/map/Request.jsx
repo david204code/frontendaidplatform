@@ -108,7 +108,7 @@ class Request extends React.Component {
                 accepted_help_id: acceptedHelp.id,
               }
             },
-            { withCredentials: true }
+            // { withCredentials: true }
             ).then(response => {
               if (response.data.status === 'created') {
                 console.log(response)
