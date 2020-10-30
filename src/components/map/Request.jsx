@@ -77,6 +77,7 @@ class Request extends React.Component {
     {
       accepted_help: {
         help_id: this.state.help.id,
+        user_id: this.props.user.id,
       }
     }, { withCredentials: true }
     ).then(response => {

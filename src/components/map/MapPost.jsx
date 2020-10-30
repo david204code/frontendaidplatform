@@ -20,6 +20,7 @@ class Help extends React.Component {
       location_lat: "",
       // status: "",
       volunteeringErrors: "",
+      user_id: this.props.user.id,
 
       viewport: {
         longitude: -0.140,
@@ -66,7 +67,7 @@ class Help extends React.Component {
     event.preventDefault();
     const csrfToken = document.querySelector('[name=csrf-token]')
     axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
-    
+    console.log(this.props)
     axios
     .post("http://localhost:3001/helps",
       {
@@ -77,6 +78,7 @@ class Help extends React.Component {
           location_long: this.state.location_long,
           location_lat: this.state.location_lat,
           // status: this.state.status
+          user_id: this.props.user.id,
         }
       },
 
