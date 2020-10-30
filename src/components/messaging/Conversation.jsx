@@ -31,8 +31,8 @@ class Conversation extends React.Component {
   componentDidMount () {
     // componentDidUpdate () {
     // console.log(this.props.acceptedHelp.conversation.id)
-    // axios.get(`http://localhost:3001/conversation/${this.props.acceptedHelp.conversation.id}`)
-    axios.get(`http://localhost:3001/conversation/${this.props.acceptedHelp.conversation.accepted_help_id}`)
+    // axios.get(`https://aidplatformapiheroku.herokuapp.com//conversation/${this.props.acceptedHelp.conversation.id}`)
+    axios.get(`https://aidplatformapiheroku.herokuapp.com//conversation/${this.props.acceptedHelp.conversation.accepted_help_id}`)
     .then( response => {
       // console.log(response.data)
       this.setState({currentConversation: {
@@ -68,7 +68,7 @@ class Conversation extends React.Component {
     }
     // console.log(message)
     // console.log(this.state.currentConversation.conversation_id)
-    axios.post(`http://localhost:3001/messages`, 
+    axios.post(`https://aidplatformapiheroku.herokuapp.com//messages`, 
     { message
       // content: this.state.newMessage,
       // conversation_id: this.state.currentConversation.conversation_id,
@@ -88,7 +88,7 @@ class Conversation extends React.Component {
 
   updateApp = () => {
     // console.log(newConversation)
-    axios.get(`http://localhost:3001/conversation/${this.props.acceptedHelp.id}`)
+    axios.get(`https://aidplatformapiheroku.herokuapp.com//conversation/${this.props.acceptedHelp.id}`)
     .then( response => { 
       this.setState({currentConversation: {
         content: response.data.messages, 

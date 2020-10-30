@@ -69,7 +69,7 @@ class Help extends React.Component {
     axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
     console.log(this.props)
     axios
-    .post("http://localhost:3001/helps",
+    .post("https://aidplatformapiheroku.herokuapp.com//helps",
       {
         help: {
           title: this.state.title,

@@ -19,7 +19,7 @@ class AcceptedHelp extends React.Component {
   componentDidMount() {
     this._isMounted = true;
     // console.log(this.state.id)
-    axios.get(`http://localhost:3001/accepted_help/${this.state.id}`)
+    axios.get(`https://aidplatformapiheroku.herokuapp.com//accepted_help/${this.state.id}`)
     .then ( resp => {
       // console.log(resp.data)
       this.setState({acceptedHelp: resp.data, loaded: true})
@@ -29,7 +29,7 @@ class AcceptedHelp extends React.Component {
   }
 
   getConversation = (id) => {
-    axios.get(`http://localhost:3001/conversation/${id}`)
+    axios.get(`https://aidplatformapiheroku.herokuapp.com//conversation/${id}`)
     .then( response => {
       console.log(response)
     })
@@ -44,9 +44,9 @@ class AcceptedHelp extends React.Component {
     const { acceptedHelp } = this.state;
     // console.log(acceptedHelp)
 
-    axios.patch(`http://localhost:3001/completeHelp/${this.state.acceptedHelp.help.id}`,
+    axios.patch(`https://aidplatformapiheroku.herokuapp.com//completeHelp/${this.state.acceptedHelp.help.id}`,
       // console.log(this.state.acceptedHelp.help)
-      axios.patch(`http://localhost:3001/updateActive/${this.state.acceptedHelp.id}`),
+      axios.patch(`https://aidplatformapiheroku.herokuapp.com//updateActive/${this.state.acceptedHelp.id}`),
       this.props.history.push(`/dashboard`)
     );
   };
@@ -56,9 +56,9 @@ class AcceptedHelp extends React.Component {
     const { acceptedHelp } = this.state;
     // console.log(acceptedHelp)
 
-    axios.patch(`http://localhost:3001/archiveHelp/${this.state.acceptedHelp.help.id}`,
+    axios.patch(`https://aidplatformapiheroku.herokuapp.com//archiveHelp/${this.state.acceptedHelp.help.id}`,
       // console.log(this.state.acceptedHelp.help)
-      axios.patch(`http://localhost:3001/updateActive/${this.state.acceptedHelp.id}`),
+      axios.patch(`https://aidplatformapiheroku.herokuapp.com//updateActive/${this.state.acceptedHelp.id}`),
       this.props.history.push(`/dashboard`)
     );
   };

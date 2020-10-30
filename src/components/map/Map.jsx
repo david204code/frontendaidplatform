@@ -43,7 +43,7 @@ class Map extends React.Component {
 
   componentWillMount() {
     this._isMounted = true;
-    axios.get(`http://localhost:3001/publish.json`)
+    axios.get(`https://aidplatformapiheroku.herokuapp.com//publish.json`)
     .then(data => {
       let info = []
       data.data.map( (data) => {

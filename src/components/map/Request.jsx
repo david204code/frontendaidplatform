@@ -27,12 +27,12 @@ class Request extends React.Component {
       }
     } = this.props;
 
-    axios.get(`http://localhost:3001/helps/${id}`)
+    axios.get(`https://aidplatformapiheroku.herokuapp.com//helps/${id}`)
     .then(response => {
       // console.log(response)
       this.setState({help: response.data, loaded: true})
       // console.log(this.state.help.id)
-      axios.get(`http://localhost:3001/checkUser/${id}/${this.state.userId}`)
+      axios.get(`https://aidplatformapiheroku.herokuapp.com//checkUser/${id}/${this.state.userId}`)
       .then(response => {
         // console.log(response.data)
         if(response.data.length === 0){
@@ -73,7 +73,7 @@ class Request extends React.Component {
     // console.log(help)
     // console.log(this.props.user.id)
 
-    axios.post("http://localhost:3001/accepted_helps",
+    axios.post("https://aidplatformapiheroku.herokuapp.com//accepted_helps",
     {
       accepted_help: {
         help_id: this.state.help.id,
@@ -81,7 +81,7 @@ class Request extends React.Component {
       }
     }, { withCredentials: true }
     ).then(response => {
-      axios.get(`http://localhost:3001/latest/accepted_help`)
+      axios.get(`https://aidplatformapiheroku.herokuapp.com//latest/accepted_help`)
         .then(response => {
           // console.log(response)
           this.setState({
@@ -92,7 +92,7 @@ class Request extends React.Component {
           acceptedId = this.state.accepted.id;
           // console.log("acceptedId: " + acceptedId);
           // this.props.history.push(`/acceptedhelp/${acceptedId}`);
-          axios.get(`http://localhost:3001/accepted_help/${acceptedId}`)
+          axios.get(`https://aidplatformapiheroku.herokuapp.com//accepted_help/${acceptedId}`)
           .then (response => {
             // console.log(response.data)
             this.setState({
@@ -100,7 +100,7 @@ class Request extends React.Component {
             })
             acceptedHelp = this.state.acceptedHelp;
             // console.log(acceptedHelp);
-            axios.post(`http://localhost:3001/conversations`, 
+            axios.post(`https://aidplatformapiheroku.herokuapp.com//conversations`, 
             {
               conversation: {
                 title: acceptedHelp.help.title,
@@ -115,12 +115,12 @@ class Request extends React.Component {
             }).catch(error => {
               console.log("not created", error);
             });
-            axios.get(`http://localhost:3001/acceptedHelpCounter/${this.state.help.id}`)
+            axios.get(`https://aidplatformapiheroku.herokuapp.com//acceptedHelpCounter/${this.state.help.id}`)
             .then (response => {
               // console.log(response)
               if (response.data >= 5) {
                 // console.log(response.data)
-                axios.patch(`http://localhost:3001/updateStatus/${this.state.help.id}`, 
+                axios.patch(`https://aidplatformapiheroku.herokuapp.com//updateStatus/${this.state.help.id}`, 
                 // console.log(this.state.help.id),
                 )
               }

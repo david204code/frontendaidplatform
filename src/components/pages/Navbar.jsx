@@ -13,7 +13,7 @@ class Navbar extends React.Component {
   };
 
   handleLogOutClick() {
-    axios.delete("http://localhost:3001/logout", { withCredentials: true})
+    axios.delete("https://aidplatformapiheroku.herokuapp.com//logout", { withCredentials: true})
     .then(response => {
       this.props.handleLogOut();
       this.props.history.push('/')

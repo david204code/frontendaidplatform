@@ -54,7 +54,7 @@ class SignUp extends React.Component {
       password_confirmation: password_confirmation
     }
 
-    // axios.post('http://localhost:3001/users', {user}, {withCredentials: true})
+    // axios.post('https://aidplatformapiheroku.herokuapp.com//users', {user}, {withCredentials: true})
     // .then(response => {
     //   // debugger
     //   console.log(response);
@@ -67,7 +67,7 @@ class SignUp extends React.Component {
     //   }
     // })
 
-    fetch('http://localhost:3001/users', {
+    fetch('https://aidplatformapiheroku.herokuapp.com//users', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -78,7 +78,7 @@ class SignUp extends React.Component {
     .then(data => this.uploadFile(this.state.governmentId, data, 
       alert("Congrgulation on signing up!"),
       // this.props.history.push("/login"),
-      axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
+      axios.post('https://aidplatformapiheroku.herokuapp.com//login', {user}, {withCredentials: true})
         .then(response => {
           // console.log(response);
         if (response.data.logged_in) {
@@ -94,15 +94,15 @@ class SignUp extends React.Component {
   }  
 
   uploadFile = (file, user) => {
-    axios.get(`http://localhost:3001/latest/user`, {withCredentials: true})
+    axios.get(`https://aidplatformapiheroku.herokuapp.com//latest/user`, {withCredentials: true})
     .then(response => {
       // console.log(response)
-      const upload = new DirectUpload(file, 'http://localhost:3001/rails/active_storage/direct_uploads')
+      const upload = new DirectUpload(file, 'https://aidplatformapiheroku.herokuapp.com//rails/active_storage/direct_uploads')
       upload.create((error, blob) => {
         if (error) {
           console.log(error)
         } else {
-          fetch(`http://localhost:3001/users/${response.data.id}`, {
+          fetch(`https://aidplatformapiheroku.herokuapp.com//users/${response.data.id}`, {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',

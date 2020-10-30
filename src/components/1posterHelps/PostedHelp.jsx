@@ -22,7 +22,7 @@ class PostedHelp extends React.Component {
   getHelp = () => {
     const id = this.props.match.params.id
     // console.log(id);
-    axios.get(`http://localhost:3001/helpChat/${id}`)
+    axios.get(`https://aidplatformapiheroku.herokuapp.com//helpChat/${id}`)
     .then(response => {
       // console.log(response)
       this.setState({
