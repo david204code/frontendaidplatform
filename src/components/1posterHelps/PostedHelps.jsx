@@ -16,7 +16,7 @@ class PosterHelps extends React.Component {
   componentDidMount(){
     // console.log(this.props.user)
     this.axiosCancelSource = axios.CancelToken.source()
-    axios.get(`https://aidplatformapiheroku.herokuapp.com//activeHelps/${localStorage.userId}`, {cancelToken: this.axiosCancelSource.token})
+    axios.get(`https://aidplatformapiheroku.herokuapp.com/activeHelps/${localStorage.userId}`, {cancelToken: this.axiosCancelSource.token})
     .then(response => {
       // console.log(response.data)
       this.setState({

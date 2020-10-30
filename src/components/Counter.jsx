@@ -11,7 +11,7 @@ class Counter extends React.Component {
   }
 
   componentDidMount() {
-    // axios.get(`https://aidplatformapiheroku.herokuapp.com//counter`)
+    // axios.get(`https://aidplatformapiheroku.herokuapp.com/counter`)
     // .then( response => {
     //   // console.log(response.data)
     //   this.setState({count: response.data})
@@ -26,7 +26,7 @@ class Counter extends React.Component {
   }
 
   getCount = () => {
-    axios.get(`https://aidplatformapiheroku.herokuapp.com//counter`)
+    axios.get(`https://aidplatformapiheroku.herokuapp.com/counter`)
     .then( response => {
       // console.log(response.data)
       this.setState({count: response.data})

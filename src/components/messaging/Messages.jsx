@@ -23,7 +23,7 @@ class Messages extends React.Component {
   
   componentDidMount(){
     // console.log(this.props.conversation)
-    axios.get(`https://aidplatformapiheroku.herokuapp.com//conversation/${this.props.conversation.id}`)
+    axios.get(`https://aidplatformapiheroku.herokuapp.com/conversation/${this.props.conversation.id}`)
     .then ( response => {
       // console.log(response.data.messages)
       this.setState({contents: response.data.messages});
@@ -46,7 +46,7 @@ class Messages extends React.Component {
 
     let content = content;
 
-    axios.post(`https://aidplatformapiheroku.herokuapp.com//messages`,
+    axios.post(`https://aidplatformapiheroku.herokuapp.com/messages`,
       {
         content: this.state.content,
         conversation_id: this.props.conversation.id,

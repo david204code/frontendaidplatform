@@ -15,7 +15,7 @@ class AcceptedHelps extends React.Component {
 
   componentDidMount() {
     this.axiosCancelSource = axios.CancelToken.source()
-    axios.get(`https://aidplatformapiheroku.herokuapp.com//activeAcceptedHelps/${localStorage.userId}`, {cancelToken: this.axiosCancelSource.token})
+    axios.get(`https://aidplatformapiheroku.herokuapp.com/activeAcceptedHelps/${localStorage.userId}`, {cancelToken: this.axiosCancelSource.token})
     .then(response => {
       // console.log(response.data)
       this.setState({
