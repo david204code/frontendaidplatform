@@ -94,7 +94,9 @@ class SignUp extends React.Component {
   }  
 
   uploadFile = (file, user) => {
-    axios.get(`https://aidplatformapiheroku.herokuapp.com/latest/user`, {withCredentials: true})
+    axios.get(`https://aidplatformapiheroku.herokuapp.com/latest/user`, 
+    // {withCredentials: true}
+    )
     .then(response => {
       // console.log(response)
       const upload = new DirectUpload(file, 'https://aidplatformapiheroku.herokuapp.com/rails/active_storage/direct_uploads')
