@@ -79,7 +79,8 @@ class Request extends React.Component {
         help_id: this.state.help.id,
         user_id: this.props.user.id,
       }
-    }, { withCredentials: true }
+    }, 
+    // { withCredentials: true }
     ).then(response => {
       axios.get(`https://aidplatformapiheroku.herokuapp.com/latest/accepted_help`)
         .then(response => {

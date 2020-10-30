@@ -82,7 +82,7 @@ class Help extends React.Component {
         }
       },
 
-      { withCredentials: true }
+      // { withCredentials: true }
     ).then(response => {
       if (response.data.status === 'created') {
         // console.log("help request submitted")

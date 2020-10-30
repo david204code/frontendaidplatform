@@ -41,7 +41,8 @@ class App extends React.Component {
 
   loginStatus = () => {
     axios.get('https://aidplatformapiheroku.herokuapp.com/logged_in',
-    {withCredentials: true})
+    // {withCredentials: true}
+    )
 
     .then(response => {
       if (response.data.logged_in) {

@@ -74,7 +74,7 @@ class Conversation extends React.Component {
       // conversation_id: this.state.currentConversation.conversation_id,
       // user_id: this.props.user.id
     },
-    { withCredentials: true }
+    // { withCredentials: true }
     ).then(response => {
       if (response.status === 200) {
       // console.log("Message created")
