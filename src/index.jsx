@@ -12,7 +12,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import actionCable from 'actioncable';
 
 const CableApp = {}
-CableApp.cable = actionCable.createConsumer('ws://aidplatformapiheroku.herokuapp.com/cable')
+// CableApp.cable = actionCable.createConsumer('ws://aidplatformapiheroku.herokuapp.com/cable')
+CableApp.cable = actionCable.createConsumer('https://aidplatformapiheroku.herokuapp.com/cable')
+
 
 ReactDOM.render(
   <Router>
