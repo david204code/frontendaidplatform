@@ -79,10 +79,9 @@ class App extends React.Component {
   // this.state or this.prop
   componentWillUpdate(nextProps, nextState) {
     // localStorage.setItem('user', JSON.stringify(nextState.user));
-    localStorage.setItem('user', nextProps.user);
-    localStorage.setItem('userEmail', nextProps.userEmail);
+    localStorage.setItem('user', nextState.user);
+    localStorage.setItem('userEmail', nextState.userEmail);
     localStorage.setItem('userId', nextState.userId);
-    localStorage.setItem('isLoggedin', true);
     // if()
   }
 
