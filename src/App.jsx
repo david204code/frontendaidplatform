@@ -35,9 +35,16 @@ class App extends React.Component {
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
   };
 
-  componentDidMount() {
-    this.loginStatus()
-  };
+  // componentDidMount() {
+  //   this.loginStatus()
+  // };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.localStorage.userEmail !== prevProps.localStorage.userEmail) {
+      this.loginStatus()
+    }
+  }
+
 
   loginStatus = () => {
     axios.get('https://aidplatformapiheroku.herokuapp.com/logged_in',
@@ -66,13 +73,13 @@ class App extends React.Component {
     .catch(error => console.log('api errors:', error))
   };
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  // componentDidUpdate(prevProps, prevState, snapshot) {
   // this is actually setting the previous user NOT the current
   // this.state or this.prop
-  // componentWillUpdate(nextProps, nextState) {
-    // localStorage.setItem('user', JSON.stringify(nextState.user));
-    // localStorage.setItem('userEmail', nextState.userEmail);
-    // localStorage.setItem('userId', nextState.userId);
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('user', JSON.stringify(nextState.user));
+    localStorage.setItem('userEmail', nextState.userEmail);
+    localStorage.setItem('userId', nextState.userId);
     // if()
   }
 
