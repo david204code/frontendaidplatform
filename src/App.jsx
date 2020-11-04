@@ -24,10 +24,10 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      isLoggedin: false,
+      isLoggedin: localStorage.isLoggedin,
       userEmail: localStorage.userEmail,
       userId: localStorage.userId,
-      user: {},
+      user: localStorage.user,
     };
 
     this.handleLogin = this.handleLogin.bind(this);
@@ -35,15 +35,16 @@ class App extends React.Component {
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
   };
 
-  // componentDidMount() {
-  //   this.loginStatus()
-  // };
+  componentDidMount() {
+    this.loginStatus()
+  };
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.localStorage.userEmail !== prevProps.localStorage.userEmail) {
-      this.loginStatus()
-    }
-  }
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   if (this.localStorage.userEmail !== prevProps.localStorage.userEmail) {
+  //     console.log(this.props)
+  //     this.loginStatus(this.props)
+  //   }
+  // }
 
 
   loginStatus = () => {
@@ -77,9 +78,11 @@ class App extends React.Component {
   // this is actually setting the previous user NOT the current
   // this.state or this.prop
   componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem('user', JSON.stringify(nextState.user));
+    // localStorage.setItem('user', JSON.stringify(nextState.user));
+    localStorage.setItem('user', nextState.user);
     localStorage.setItem('userEmail', nextState.userEmail);
     localStorage.setItem('userId', nextState.userId);
+    localStorage.setItem('isLoggedin', true);
     // if()
   }
 
