@@ -66,13 +66,14 @@ class App extends React.Component {
     .catch(error => console.log('api errors:', error))
   };
 
-  // componentDidUpdate(previousProps, previousState)
+  componentDidUpdate(prevProps, prevState, snapshot) {
   // this is actually setting the previous user NOT the current
   // this.state or this.prop
-  componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem('user', JSON.stringify(nextState.user));
-    localStorage.setItem('userEmail', nextState.userEmail);
-    localStorage.setItem('userId', nextState.userId);
+  // componentWillUpdate(nextProps, nextState) {
+    // localStorage.setItem('user', JSON.stringify(nextState.user));
+    // localStorage.setItem('userEmail', nextState.userEmail);
+    // localStorage.setItem('userId', nextState.userId);
+    // if()
   }
 
   handleLogin = (data) => {
