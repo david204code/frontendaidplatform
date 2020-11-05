@@ -55,12 +55,12 @@ class App extends React.Component {
     .then(response => {
       if (response.data.logged_in) {
         this.handleLogin(response)
-        this.setState({
-          isLoggedin: true,
-          user: response.data.user,
-          userEmail: response.data.user.email,
-          userId: response.data.user.id,
-        })
+        // this.setState({
+        //   isLoggedin: true,
+        //   user: response.data.user,
+        //   userEmail: response.data.user.email,
+        //   userId: response.data.user.id,
+        // })
       } else if (!response.data.logged_in) {
         this.handleLogOut()
         this.setState({
@@ -79,16 +79,27 @@ class App extends React.Component {
   // this.state or this.prop
   componentWillUpdate(nextProps, nextState) {
     // localStorage.setItem('user', JSON.stringify(nextState.user));
-    localStorage.setItem('user', nextState.user);
-    localStorage.setItem('userEmail', nextState.userEmail);
-    localStorage.setItem('userId', nextState.userId);
+    // localStorage.setItem('user', nextState.user);
+    // localStorage.setItem('userEmail', nextState.userEmail);
+    // localStorage.setItem('userId', nextState.userId);
     // if()
+
+    console.log(nextState);
+    localStorage.setItem('isLoggedin', nextState.isLoggedin)
+    localStorage.setItem('user', nextState.user)
+    localStorage.setItem('userEmail', nextState.userEmail)
+    localStorage.setItem('userId', nextState.userId)  
   }
 
   handleLogin = (data) => {
-    // console.log(data)
+    console.log(data.data)
     // this.setState({
-      localStorage.setState({
+    localStorage.setItem('isLoggedin', data.data.logged_in)
+    localStorage.setItem('user', data.data.user)
+    localStorage.setItem('user', data.data.userEmail)
+    localStorage.setItem('user', data.data.userId)
+
+    this.setState({
       isLoggedin: true,
       user: data.data.user,
       userEmail: data.data.user.email,
@@ -97,6 +108,7 @@ class App extends React.Component {
   };
 
   handleLogOut = () => {
+    localStorage.setItem('isLoggedin', false)
     this.setState({
       isLoggedin: false,
       user: {},
@@ -113,6 +125,7 @@ class App extends React.Component {
 
   render() {
     const userEmail = this.state.userEmail;
+    const isLoggedin = localStorage.isLoggedin;
     const PrivateRoute = ({ component: Component, ...rest}) => (
       <Route {...rest} render={(props) => (
         // console.log(this.state.user.email),
@@ -120,7 +133,8 @@ class App extends React.Component {
         // console.log(userEmail),
         // console.log(localStorage.userEmail),
         // console.log(localStorage.user[21]+localStorage.user[22]),
-        !!localStorage.userEmail && localStorage.userEmail != undefined
+        // !!localStorage.userEmail && localStorage.userEmail != undefined
+        isLoggedin === "true"
         // this.state.isLoggedin === true
         ? <Component {...props} {...rest}/>
         : <Redirect to={{
