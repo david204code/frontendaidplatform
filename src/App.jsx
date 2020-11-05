@@ -35,9 +35,9 @@ class App extends React.Component {
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
   };
 
-  componentDidMount() {
-    this.loginStatus()
-  };
+  // componentDidMount() {
+  //   this.loginStatus()
+  // };
 
   // componentDidUpdate(prevProps, prevState, snapshot) {
   //   if (this.localStorage.userEmail !== prevProps.localStorage.userEmail) {
