@@ -17,6 +17,7 @@ import PostedHelps from './components/1posterHelps/PostedHelps';
 import PostedHelp from './components/1posterHelps/PostedHelp';
 import AcceptedHelps from './components/2AccepterHelps/AcceptedHelps';
 import GetInvolved from './components/pages/GetInvolved';
+import Profile from './components/pages/Profile';
 
 class App extends React.Component {
 
@@ -199,6 +200,12 @@ class App extends React.Component {
                 />  
               )}
             /> */}
+            <PrivateRoute
+              exact path ={"/profile"}
+              component ={ Profile }
+              user ={this.state.user}
+              isLoggedin ={this.state.isLoggedin}
+            />
 
             <PrivateRoute
               exact path ={"/dashboard"}
