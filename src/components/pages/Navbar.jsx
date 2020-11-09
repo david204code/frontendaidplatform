@@ -9,6 +9,10 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      isLoggedin: localStorage.isLoggedin,
+    }
+
     this.handleLogOutClick = this.handleLogOutClick.bind(this);
   };
 
@@ -63,7 +67,7 @@ render() {
               Dashboard
             </Link>
             {
-              this.props.isLoggedin === 'true'
+              this.state.isLoggedin === 'true'
               ?<button onClick={() => this.handleLogOutClick()}>Logout</button> 
               :null
             }
