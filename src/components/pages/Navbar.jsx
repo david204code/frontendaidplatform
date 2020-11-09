@@ -63,9 +63,9 @@ render() {
               Dashboard
             </Link>
             {
-              this.props.isLoggedin ? 
-              <button onClick={() => this.handleLogOutClick()}>Logout</button> :
-              null
+              this.props.isLoggedin === 'true'
+              ?<button onClick={() => this.handleLogOutClick()}>Logout</button> 
+              :null
             }
           </nav>
           <Counter />

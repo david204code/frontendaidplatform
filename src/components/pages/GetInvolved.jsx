@@ -25,7 +25,8 @@ class GetInvolved extends React.Component {
             </p>
             
             {
-              !this.props.isLoggedin ?
+              this.props.isLoggedin === 'false'
+              ?
               <p className ="text-center">
                 <Link
                   to ="/login"
@@ -41,8 +42,8 @@ class GetInvolved extends React.Component {
                 >
                   Sign Up
                 </Link>
-              </p> :
-              null
+              </p> 
+              :null
             }
           </div>
         </div>
