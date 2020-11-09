@@ -16,7 +16,7 @@ class Profile extends React.Component {
   componentDidMount() {
     axios.get(`https://aidplatformapiheroku.herokuapp.com/users/${localStorage.userId}`,)
     .then(response => {
-      // console.log(response)
+      console.log(response)
       if(response.status == 200){
         // console.log(response.data.governmentId)
         this.setState({
@@ -34,7 +34,7 @@ class Profile extends React.Component {
       <div>
         <div>
           <h1>Profile Page</h1>
-          {/* {console.log(this.state.governmentId)} */}
+          {console.log(this.state.governmentId)}
           <img src ={`https://aidplatformapiheroku.herokuapp.com/${this.state.governmentId}`} />
         </div>
       </div>
