@@ -72,6 +72,8 @@ render() {
             >
               Dashboard
             </Link>
+            {console.log(this.state.isLoggedin)}
+            {console.log(localStorage.isLoggedin)}
             {
               this.state.isLoggedin === 'true'
               ?<button onClick={() => this.handleLogOutClick()}>Logout</button> 
