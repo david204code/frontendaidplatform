@@ -16,6 +16,12 @@ class Navbar extends React.Component {
     this.handleLogOutClick = this.handleLogOutClick.bind(this);
   };
 
+  componentDidUpdate() {
+    this.setState({
+      isLoggedin: localStorage.isLoggedin,
+    });
+  }
+
   handleLogOutClick() {
     axios.delete("https://aidplatformapiheroku.herokuapp.com/logout", 
     // { withCredentials: true}
@@ -66,8 +72,6 @@ render() {
             >
               Dashboard
             </Link>
-            {console.log(this.state.isLoggedin)}
-            {console.log(localStorage.isLoggedin) + " local storage"}
             {
               this.state.isLoggedin === 'true'
               ?<button onClick={() => this.handleLogOutClick()}>Logout</button> 
