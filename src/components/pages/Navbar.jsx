@@ -20,7 +20,7 @@ class Navbar extends React.Component {
     if(this.state.isLoggedin !== isLoggedin){
       this.state.isLoggedin = localStorage.isLoggedin
     }
-    console.log(this.state.isLoggedin)
+    // console.log(this.state.isLoggedin)
   }
 
   handleLogOutClick() {
@@ -30,6 +30,7 @@ class Navbar extends React.Component {
     .then(response => {
       this.props.handleLogOut();
       this.props.history.push('/')
+      window.location.reload();
     })
     .catch(error => {
       console.log("logout error", error);
