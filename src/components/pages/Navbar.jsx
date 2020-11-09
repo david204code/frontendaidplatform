@@ -16,10 +16,11 @@ class Navbar extends React.Component {
     this.handleLogOutClick = this.handleLogOutClick.bind(this);
   };
 
-  componentDidUpdate() {
-    this.setState({
-      isLoggedin: localStorage.isLoggedin,
-    });
+  componentDidUpdate(isLoggedin) {
+    if(this.state.isLoggedin !== isLoggedin){
+      this.state.isLoggedin = localStorage.isLoggedin
+    }
+    console.log(this.state.isLoggedin)
   }
 
   handleLogOutClick() {
@@ -72,8 +73,6 @@ render() {
             >
               Dashboard
             </Link>
-            {console.log(this.state.isLoggedin)}
-            {console.log(localStorage.isLoggedin)}
             {
               this.state.isLoggedin === 'true'
               ?<button onClick={() => this.handleLogOutClick()}>Logout</button> 
