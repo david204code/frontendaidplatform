@@ -38,7 +38,7 @@ class Conversation extends React.Component {
       this.setState({currentConversation: {
         content: response.data.messages, 
         conversation_id: response.data.id,
-        users: this.props.user.id,
+        users: localStorage.userId,
         },
         loaded: true
       })

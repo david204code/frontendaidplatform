@@ -25,7 +25,7 @@ class GetInvolved extends React.Component {
             </p>
             
             {
-              this.props.isLoggedin === 'false' && undefined
+              this.props.isLoggedin === 'false' || undefined
               ?
               <p className ="text-center">
                 <Link
