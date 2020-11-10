@@ -20,7 +20,7 @@ class Help extends React.Component {
       location_lat: "",
       // status: "",
       volunteeringErrors: "",
-      user_id: this.props.user.id,
+      user_id: localStorage.userId,
 
       viewport: {
         longitude: -0.140,
@@ -78,7 +78,7 @@ class Help extends React.Component {
           location_long: this.state.location_long,
           location_lat: this.state.location_lat,
           // status: this.state.status
-          user_id: this.props.user.id,
+          user_id: localStorage.userId,
         }
       },
 
