@@ -87,7 +87,7 @@ class App extends React.Component {
 
     console.log(nextState);
     localStorage.setItem('isLoggedin', nextState.isLoggedin)
-    localStorage.setItem('user', nextState.user)
+    localStorage.setItem('user', JSON.parse(nextState.user))
     localStorage.setItem('userEmail', nextState.userEmail)
     localStorage.setItem('userId', nextState.userId)  
   }
