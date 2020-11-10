@@ -66,7 +66,10 @@ class Conversation extends React.Component {
       conversation_id: this.props.acceptedHelp.conversation.id,
       user_id: this.props.user.id
     }
-    // console.log(message)
+    console.log(message)
+    console.log(this.state.newMessage)
+    console.log(this.props.acceptedHelp.conversation.id)
+    console.log(this.props.user.id)
     // console.log(this.state.currentConversation.conversation_id)
     axios.post(`https://aidplatformapiheroku.herokuapp.com/messages`, 
     { message
