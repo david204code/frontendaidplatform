@@ -9,7 +9,8 @@ class PosterHelps extends React.Component {
 
     this.state = {
       helps: [],
-      user: JSON.parse(localStorage.user),
+      // user: JSON.parse(localStorage.user),
+      user: localStorage.user,
     };
 
   };
