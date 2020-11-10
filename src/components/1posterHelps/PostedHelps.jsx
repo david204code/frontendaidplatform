@@ -9,6 +9,7 @@ class PosterHelps extends React.Component {
 
     this.state = {
       helps: [],
+      user: JSON.parse(localStorage.user),
     };
 
   };
@@ -34,13 +35,15 @@ class PosterHelps extends React.Component {
     return helps && helps.map(help => {
       // console.log(help)
       return (
-        <div key ={help.id}>
-          <h4>
-            Title: {help.title}
-          </h4>  
-          <Link to ={`/postedhelp/${help.id}`}>
-            More info
-          </Link>    
+        <div key ={help.id} className ="card" style ={{width: "18rem", display: "inline-block"}}>
+          <div className ="card-body">
+            <h4>
+              Title: {help.title}
+            </h4>  
+            <Link to ={`/postedhelp/${help.id}`}>
+              More info
+            </Link>    
+          </div>
         </div>
       )
     })
@@ -53,7 +56,9 @@ class PosterHelps extends React.Component {
         <div>
           <p>Hi David</p>
           <h1>List of active post(s)</h1>
-          {this.displayHelp(this.state.helps)}
+          <div className ="text-center">
+            {this.displayHelp(this.state.helps)}
+          </div>
         </div>
       </div>
     )
