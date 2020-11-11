@@ -38,8 +38,8 @@ class App extends React.Component {
 
   componentDidMount() {
     // this.loginStatus()
-    console.log(this.state.user)
-    console.log(localStorage.user)
+    console.log(JSON.parse(this.state.user))
+    console.log(JSON.parse(localStorage.user))
   };
 
   // componentDidUpdate(prevProps, prevState, snapshot) {
