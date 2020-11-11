@@ -36,9 +36,11 @@ class App extends React.Component {
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
   };
 
-  // componentDidMount() {
-  //   this.loginStatus()
-  // };
+  componentDidMount() {
+    // this.loginStatus()
+    console.log(user)
+    console.log(localStorage.user)
+  };
 
   // componentDidUpdate(prevProps, prevState, snapshot) {
   //   if (this.localStorage.userEmail !== prevProps.localStorage.userEmail) {
@@ -85,7 +87,7 @@ class App extends React.Component {
     // localStorage.setItem('userId', nextState.userId);
     // if()
 
-    console.log(nextState);
+    // console.log(nextState);
     localStorage.setItem('isLoggedin', nextState.isLoggedin)
     localStorage.setItem('user', nextState.user)
     localStorage.setItem('userEmail', nextState.userEmail)
@@ -93,7 +95,7 @@ class App extends React.Component {
   }
 
   handleLogin = (data) => {
-    console.log(data.data)
+    // console.log(data.data)
     // this.setState({
     localStorage.setItem('isLoggedin', data.data.logged_in)
     localStorage.setItem('user', data.data.user)
