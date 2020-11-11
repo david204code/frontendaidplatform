@@ -87,7 +87,7 @@ class App extends React.Component {
 
     console.log(nextState);
     localStorage.setItem('isLoggedin', nextState.isLoggedin)
-    localStorage.setItem('user', nextState.user)
+    localStorage.setItem('user', JSON.parse(nextState.user))
     localStorage.setItem('userEmail', nextState.userEmail)
     localStorage.setItem('userId', nextState.userId)  
   }
@@ -97,9 +97,9 @@ class App extends React.Component {
     // this.setState({
     localStorage.setItem('isLoggedin', data.data.logged_in)
     // localStorage.setItem('user', data.data.user)
-    localStorage.setItem(JSON.parse(JSON.stringify(data.data.user)))
-    localStorage.setItem('user', data.data.userEmail)
-    localStorage.setItem('user', data.data.userId)
+    localStorage.setItem('user', JSON.parse(data.data.user))
+    localStorage.setItem('userEmail', data.data.userEmail)
+    localStorage.setItem('userId', data.data.userId)
 
     this.setState({
       isLoggedin: true,
