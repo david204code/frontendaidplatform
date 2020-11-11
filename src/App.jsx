@@ -38,7 +38,7 @@ class App extends React.Component {
 
   componentDidMount() {
     // this.loginStatus()
-    console.log(user)
+    console.log(this.state.user)
     console.log(localStorage.user)
   };
 
